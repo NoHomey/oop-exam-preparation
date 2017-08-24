@@ -25,4 +25,4 @@ clean:
 	rm -f *.o ./a.out
 
 leakCheck:
-	valgrind ./a.out
+	valgrind ./a.out < all.txt
