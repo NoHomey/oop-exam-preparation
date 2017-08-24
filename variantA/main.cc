@@ -8,13 +8,17 @@ int main() {
         return EXIT_FAILURE;
     }
     TimestampWithDescription object;
-    while(!timestamps.eof()) {
-        if(timestamps.bad() || timestamps.fail()) {
-            std::cerr << "Error while reading timestamps.txt" << std::endl;
-            return EXIT_FAILURE;
+    try {
+        while(timestamps >> object) {
+            std::cout << object << std::endl;
         }
-        timestamps >> object;
-        std::cout << object << std::endl;
+    } catch(std::bad_alloc& error) {
+        std::cerr << "Error while reading timestamps.txt, not enough memory" << std::endl;
+        return EXIT_FAILURE;
+    }
+    if(timestamps.bad() || timestamps.fail()) {
+        std::cerr << "Error while reading timestamps.txt" << std::endl;
+        return EXIT_FAILURE;
     }
 
     return 0;

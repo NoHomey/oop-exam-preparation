@@ -19,7 +19,7 @@ public:
 public:
     Timestamp& operator+=(int time) noexcept;
 
-    Timestamp operator+(int time) noexcept;
+    Timestamp operator+(int time) const noexcept;
 
 private:
     Time timestamp;

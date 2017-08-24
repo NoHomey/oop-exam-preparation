@@ -19,7 +19,7 @@ Timestamp& Timestamp::operator+=(int time) noexcept {
     return *this;
 }
 
-Timestamp Timestamp::operator+(int time) noexcept {
+Timestamp Timestamp::operator+(int time) const noexcept {
     Timestamp copy{*this};
     copy += time;
     return copy;
