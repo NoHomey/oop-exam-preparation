@@ -67,7 +67,7 @@ DynamicArray<Type>& DynamicArray<Type>::operator=(const DynamicArray& other) {
 }
 
 template<typename Type>
-DynamicArray<Type>& DynamicArray<Type>::operator=(DynamicArray&& other) {
+DynamicArray<Type>& DynamicArray<Type>::operator=(DynamicArray&& other) noexcept {
     if(this != &other) {
         mmoveOther(std::move(other));
     }

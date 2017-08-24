@@ -17,7 +17,7 @@ public:
 
     DynamicArray& operator=(const DynamicArray& other);
 
-    DynamicArray& operator=(DynamicArray&& other);
+    DynamicArray& operator=(DynamicArray&& other) noexcept;
 
 public:
     size_t size() const noexcept;

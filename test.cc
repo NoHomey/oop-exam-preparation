@@ -1,41 +1,33 @@
 #include <iostream>
-#include "DynamicArray.h"
-
-using Array = DynamicArray<int>;
+#include "String.h"
 
 int main() {
-    Array array;
-    for(size_t i = 0; i < 100; ++i) {
-        array.push(i);
-    }
+    String str1{"some text"};
 
-    Array copy = array;
+    String str2;
 
-    std::cout << array.size() << ' ' << array.capacity() << ' ' << array[9] << std::endl;
-    std::cout << copy.size() << ' ' << copy.capacity() << ' ' << copy[9] << std::endl;
+    std::cin >> str2;
 
-    for(size_t i = 0; i < 20; ++i) {
-        array.pop();
-        copy.pop();
-    }
+    std::cout << str1.length() << ' ' << str1 << ' ' << str1.cString() << std::endl;
+    std::cout << str2.length() << ' ' << str2 << ' ' << str2.cString() << std::endl;
 
-    std::cout << array.size() << ' ' << array.capacity() << ' ' << array[9] << std::endl;
-    std::cout << copy.size() << ' ' << copy.capacity() << ' ' << copy[9] << std::endl;
+    String str3 = str1 + str2;
 
-    array.shrinkToFit();
+    std::cout << str3.length() << ' ' << str3 << ' ' << str3.cString() << std::endl;
 
-    std::cout << array.size() << ' ' << array.capacity() << ' ' << array[9] << std::endl;
-    std::cout << copy.size() << ' ' << copy.capacity() << ' ' << copy[9] << std::endl;
+    std::cout << (String{"abcd"} == String{"abcd"}) << std::endl;
 
-    copy.extend(20);
+    std::cout << (String{"abdd"} != String{"abcd"}) << std::endl;
 
-    std::cout << array.size() << ' ' << array.capacity() << ' ' << array[9] << std::endl;
-    std::cout << copy.size() << ' ' << copy.capacity() << ' ' << copy[9] << std::endl;
+    std::cout << (String{"abcd"} < String{"abdd"}) << std::endl;
 
-    copy = array;
+    std::cout << (String{"abdd"} > String{"abcd"}) << std::endl;
 
-    std::cout << array.size() << ' ' << array.capacity() << ' ' << array[9] << std::endl;
-    std::cout << copy.size() << ' ' << copy.capacity() << ' ' << copy[9] << std::endl;
+    std::cout << (String{"abcd"} <= String{"abdd"}) << std::endl;
+    std::cout << (String{"abcd"} <= String{"abcd"}) << std::endl;
+    
+    std::cout << (String{"abdd"} >= String{"abcd"}) << std::endl;
+    std::cout << (String{"abcd"} >= String{"abcd"}) << std::endl;
 
     return 0;
 }
