@@ -11,16 +11,13 @@ int main() {
 
     for(int i = 0; i < 5; ++i) {
         instruments[i] = new Marker;
-        instruments[i]->read(std::cin);
-        instruments[i]->write(std::cout);
-        std::cout << std::endl;
+        instruments[5 + i] = new Pencil;
     }
 
-    for(int i = 5; i < 10; ++i) {
-        instruments[i] = new Pencil;
-        instruments[i]->read(std::cin);
-        instruments[i]->write(std::cout);
-        std::cout << std::endl;
+    for(int i = 0; i < 10; ++i) {
+        WritingInstrument& instrument = *(instruments[i]);
+        std::cin >> instrument;
+        std::cout << instrument << std::endl;
     }
 
     std::cin >> brand;
@@ -31,11 +28,11 @@ int main() {
             if(written) {
                 file << '\n';
             }
-            instruments[i]->write(file);
+            file << *(instruments[i]);
             written = true;
         }
         delete instruments[i];
     }
-    
+
     return 0;
 }
