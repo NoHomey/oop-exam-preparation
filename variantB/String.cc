@@ -104,7 +104,7 @@ std::istream& operator>>(std::istream& in, String& string) {
             delete[] buffer;
             buffer = temp;
         }
-        if(isDelimiter(symbol)) {
+        if(isDelimiter(symbol) || in.eof()) {
             buffer[size] = '\0';
             string = {buffer};
             delete[] buffer;

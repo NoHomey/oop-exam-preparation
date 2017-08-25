@@ -10,8 +10,10 @@ int main() {
 
     std::ofstream file{"popular.txt"};
 
+    std::ifstream all{"all.txt"};
+
     for(int i = 0; i < 2; ++i) {
-        std::cin >> b;
+        all >> b;
         if(b.getEdition() >= 1000) {
             if(written) {
                 file << std::endl;
@@ -22,7 +24,7 @@ int main() {
     }
 
     for(int i = 0; i < 2; ++i) {
-        std::cin >> m;
+        all >> m;
         if(m.getEdition() >= 1000) {
             if(written) {
                 file << std::endl;

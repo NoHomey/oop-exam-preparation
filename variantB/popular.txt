@@ -1,2 +1,2 @@
-Title1, 1000, ivo
+Title1, 1000, Ivo
 Mag1, 1001, 20

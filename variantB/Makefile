@@ -18,11 +18,11 @@ $(eval $(call Object,Book,Publication.o))
 
 $(eval $(call Object,Magazine,Publication.o))
 
-run:
+run: all
 	./a.out
 
 clean:
 	rm -f *.o ./a.out
 
-leakCheck:
+leakCheck: all
 	valgrind ./a.out

@@ -1,0 +1,4 @@
+Title1 1000 Ivo
+Title2 100 Bob
+Mag1 1001 20
+Mag2 200 200
