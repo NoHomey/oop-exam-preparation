@@ -4,44 +4,38 @@
 #include <fstream>
 
 int main() {
-    Marker markers[5];
-    Pencil pencils[5];
+    WritingInstrument* instruments[10];
     String brand;
     bool written = false;
     std::ofstream file{"branded.txt"};
 
     for(int i = 0; i < 5; ++i) {
-        std::cin >> markers[i];
-        std::cout << markers[i] << std::endl;
+        instruments[i] = new Marker;
+        instruments[i]->read(std::cin);
+        instruments[i]->write(std::cout);
+        std::cout << std::endl;
     }
 
-    for(int i = 0; i < 5; ++i) {
-        std::cin >> pencils[i];
-        std::cout << pencils[i] << std::endl;
+    for(int i = 5; i < 10; ++i) {
+        instruments[i] = new Pencil;
+        instruments[i]->read(std::cin);
+        instruments[i]->write(std::cout);
+        std::cout << std::endl;
     }
 
     std::cin >> brand;
     std::cout << brand << std::endl;
 
-    for(int i = 0; i < 5; ++i) {
-        if(markers[i].getBrand() == brand) {
+    for(int i = 0; i < 10; ++i) {
+        if(instruments[i]->getBrand() == brand) {
             if(written) {
                 file << '\n';
             }
-            file << markers[i];
+            instruments[i]->write(file);
             written = true;
         }
+        delete instruments[i];
     }
-
-    for(int i = 0; i < 5; ++i) {
-        if(pencils[i].getBrand() == brand) {
-            if(written) {
-                file << '\n';
-            }
-            file << pencils[i];
-            written = true;
-        }
-    }
-
+    
     return 0;
 }

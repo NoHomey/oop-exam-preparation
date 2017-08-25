@@ -12,13 +12,23 @@ void Marker::setColor(String&& newColor) noexcept {
     color = std::move(newColor);
 }
 
-std::istream& operator>>(std::istream& in, Marker& marker) {
-    String color;
-    in >> static_cast<WritingInstrument&>(marker) >> color;
-    marker.setColor(color);
+std::istream& Marker::read(std::istream& in) {
+    String newColor;
+    WritingInstrument::read(in);
+    in >> newColor;
+    setColor(newColor);
     return in;
+}
+
+std::ostream& Marker::write(std::ostream& out) const {
+    WritingInstrument::write(out);
+    return out << ", " << getColor();
+}
+
+std::istream& operator>>(std::istream& in, Marker& marker) {
+    return marker.read(in);
 }
     
 std::ostream& operator<<(std::ostream& out, const Marker& marker) {
-    return out << static_cast<const WritingInstrument&>(marker) << ", " << marker.getColor();
+    return marker.write(out);
 }

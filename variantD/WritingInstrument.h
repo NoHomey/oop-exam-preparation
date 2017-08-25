@@ -9,7 +9,7 @@ public:
 public:
     WritingInstrument() noexcept;
     
-    ~WritingInstrument() noexcept = default;
+    virtual ~WritingInstrument() noexcept = default;
     
     WritingInstrument(const WritingInstrument& other) = default;
     
@@ -30,6 +30,10 @@ public:
     void setBrand(String&& newBrand) noexcept;
 
     void setYear(Year newYear) noexcept;
+
+    virtual std::istream& read(std::istream& in);
+
+    virtual std::ostream& write(std::ostream& out) const;
 
 protected:
     String brand;

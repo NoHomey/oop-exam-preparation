@@ -23,6 +23,10 @@ public:
 
     void setColor(String&& newColor) noexcept;
 
+    std::istream& read(std::istream& in) final;
+    
+    std::ostream& write(std::ostream& out) const final;
+
 private:
     String color;
 };

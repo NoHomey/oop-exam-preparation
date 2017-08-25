@@ -23,15 +23,23 @@ void WritingInstrument::setYear(Year newYear) noexcept {
     year = newYear;
 }
 
-std::istream& operator>>(std::istream& in, WritingInstrument& writingInstrument) {
-    String brand;
-    WritingInstrument::Year year;
-    in >> brand >> year;
-    writingInstrument.setBrand(std::move(brand));
-    writingInstrument.setYear(year);
+std::istream& WritingInstrument::read(std::istream& in) {
+    String newBrand;
+    WritingInstrument::Year newYear;
+    in >> newBrand >> newYear;
+    setBrand(std::move(newBrand));
+    setYear(newYear);
     return in;
+}
+
+std::ostream& WritingInstrument::write(std::ostream& out) const {
+    return out << getBrand() << ", " << getYear();
+}
+
+std::istream& operator>>(std::istream& in, WritingInstrument& writingInstrument) {
+    return writingInstrument.read(in);
 }
     
 std::ostream& operator<<(std::ostream& out, const WritingInstrument& writingInstrument) {
-    return out << writingInstrument.getBrand() << ", " << writingInstrument.getYear();
+    return writingInstrument.write(out);
 }
