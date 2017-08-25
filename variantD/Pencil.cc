@@ -24,10 +24,10 @@ std::ostream& Pencil::write(std::ostream& out) const {
     return out << ", " << getHardness();
 }
 
-std::istream& operator>>(std::istream& in, Pencil& pencil) {
+/*std::istream& operator>>(std::istream& in, Pencil& pencil) {
     return pencil.read(in);
 }
     
 std::ostream& operator<<(std::ostream& out, const Pencil& pencil) {
     return pencil.write(out);
-}
+}*/

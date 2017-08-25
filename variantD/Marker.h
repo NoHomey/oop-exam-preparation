@@ -31,6 +31,6 @@ private:
     String color;
 };
 
-std::istream& operator>>(std::istream& in, Marker& marker);
+/*std::istream& operator>>(std::istream& in, Marker& marker);
 
-std::ostream& operator<<(std::ostream& out, const Marker& marker);
+std::ostream& operator<<(std::ostream& out, const Marker& marker);*/

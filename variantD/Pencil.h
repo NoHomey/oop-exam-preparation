@@ -32,6 +32,6 @@ private:
     Hardness hardness;
 };
 
-std::istream& operator>>(std::istream& in, Pencil& pencil);
+/*std::istream& operator>>(std::istream& in, Pencil& pencil);
 
-std::ostream& operator<<(std::ostream& out, const Pencil& pencil);
+std::ostream& operator<<(std::ostream& out, const Pencil& pencil);*/

@@ -25,10 +25,10 @@ std::ostream& Marker::write(std::ostream& out) const {
     return out << ", " << getColor();
 }
 
-std::istream& operator>>(std::istream& in, Marker& marker) {
+/*std::istream& operator>>(std::istream& in, Marker& marker) {
     return marker.read(in);
 }
     
 std::ostream& operator<<(std::ostream& out, const Marker& marker) {
     return marker.write(out);
-}
+}*/
