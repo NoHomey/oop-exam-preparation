@@ -1,7 +1,7 @@
 // fn45342_prob1_oop.cpp : Defines the entry point for the console application.
 //
 
-
+#include <iostream>
 #include <cstddef>
 
 class Railcar {
@@ -38,16 +38,12 @@ public:
 			}
 			return;
 		}
-		if (prev == nullptr) {
-			prev = other;
-			other->next = this;
-		}
-		else {
-			other->next = this;
+		if (prev != nullptr) {
 			other->prev = prev;
 			prev->next = other;
-			prev = other;
 		}
+		other->next = this;
+		prev = other;
 	}
 
 	void SetNext(Railcar* other) noexcept {
@@ -58,16 +54,12 @@ public:
 			}
 			return;
 		}
-		if (next == nullptr) {
-			next = other;
-			other->prev = this;
-		}
-		else {
-			other->prev = this;
+		if (next != nullptr) {
 			other->next = next;
 			next->prev = other;
-			next = other;
 		}
+		other->prev = this;
+		next = other;
 	}
 
 	const Railcar* GetPrev() const noexcept {
@@ -83,12 +75,10 @@ public:
 	}
 
 	bool operator<(const Railcar& other) const noexcept {
-		const Railcar* iter = next;
-		while (iter != nullptr) {
+		for(const Railcar* iter = next; iter != nullptr; iter = iter->next) {
 			if (iter == &other) {
 				return true;
 			}
-			iter = iter->next;
 		}
 		return false;
 	}
@@ -143,11 +133,8 @@ public:
 public:
 	double GetMaxLoad() const noexcept {
 		double result = 0;
-		const Railcar* iter = head;
-		while (iter != nullptr)
-		{
+		for(const Railcar* iter = head; iter != nullptr; iter = iter->GetNext()) {
 			result += iter->GetMaxLoad();
-			iter = iter->GetNext();
 		}
 		return result;
 	}
@@ -156,8 +143,7 @@ private:
 	void clean() noexcept {
 		const Railcar* iter = head;
 		const Railcar* tmp;
-		while (iter != nullptr)
-		{
+		while (iter != nullptr) {
 			tmp = iter;
 			iter = iter->GetNext();
 			delete tmp;
@@ -168,8 +154,12 @@ private:
 	void copy(const Composition& other) {
 		Railcar* newHead = new Railcar{ *other.head };
 		const Railcar* iter = other.head->GetNext();
+		Railcar* newIter = newHead;
+		Railcar* next;
 		while (iter != nullptr) {
-			newHead->SetNext(new Railcar{ *iter });
+			next = new Railcar{ *iter };
+			newIter->SetNext(next);
+			newIter = next;
 			iter = iter->GetNext();
 		}
 		clean();
@@ -179,8 +169,6 @@ private:
 private:
 	Railcar* head;
 };
-
-#include <iostream>
 
 int main() {
 
