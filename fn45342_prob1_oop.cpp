@@ -70,11 +70,11 @@ public:
 		}
 	}
 
-	Railcar* GetPrev() const noexcept {
+	const Railcar* GetPrev() const noexcept {
 		return prev;
 	}
 
-	Railcar* GetNext() const noexcept {
+	const Railcar* GetNext() const noexcept {
 		return next;
 	}
 
@@ -131,9 +131,11 @@ public:
 		if (size > 0) {
 			head = new Railcar{ values[0] };
 			Railcar* iter = head;
+			Railcar* next;
 			for (size_t i = 1; i < size; ++i) {
-				iter->SetNext(new Railcar{ values[i] });
-				iter = iter->GetNext();
+				next = new Railcar{ values[i] };
+				iter->SetNext(next);
+				iter = next;
 			}
 		}
 	}
@@ -141,7 +143,7 @@ public:
 public:
 	double GetMaxLoad() const noexcept {
 		double result = 0;
-		Railcar* iter = head;
+		const Railcar* iter = head;
 		while (iter != nullptr)
 		{
 			result += iter->GetMaxLoad();
@@ -152,13 +154,12 @@ public:
 
 private:
 	void clean() noexcept {
-		Railcar* iter = head;
-		Railcar* tmp;
+		const Railcar* iter = head;
+		const Railcar* tmp;
 		while (iter != nullptr)
 		{
 			tmp = iter;
 			iter = iter->GetNext();
-			tmp->SetNext(nullptr);
 			delete tmp;
 		}
 		head = nullptr;
@@ -166,7 +167,7 @@ private:
 
 	void copy(const Composition& other) {
 		Railcar* newHead = new Railcar{ *other.head };
-		Railcar* iter = other.head->GetNext();
+		const Railcar* iter = other.head->GetNext();
 		while (iter != nullptr) {
 			newHead->SetNext(new Railcar{ *iter });
 			iter = iter->GetNext();
