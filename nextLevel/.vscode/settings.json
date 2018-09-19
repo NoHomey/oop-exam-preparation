@@ -23,6 +23,8 @@
         "type_traits": "cpp",
         "typeinfo": "cpp",
         "utility": "cpp",
-        "cstddef": "cpp"
+        "cstddef": "cpp",
+        "cmath": "cpp",
+        "system_error": "cpp"
     }
 }
